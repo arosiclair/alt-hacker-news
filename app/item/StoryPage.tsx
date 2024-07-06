@@ -1,3 +1,4 @@
+import DebugJSON from '../DebugJSON';
 import { HNItem } from '../types/hacker-news';
 
 type StoryPageProps = {
@@ -16,7 +17,7 @@ export default function StoryPage({ item }: StoryPageProps) {
         <h1>Hello, StoryPage!</h1>
         <h2>ID: {item.id}</h2>
         <h3>JSON:</h3>
-        <pre>{JSON.stringify(item, null, 4)}</pre>
+        <DebugJSON>{item}</DebugJSON>
       </div>
 
       <h1>
