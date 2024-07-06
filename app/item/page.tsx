@@ -1,5 +1,6 @@
 import { HNItem } from '../types/hacker-news';
 import { PageProps } from '../types/misc';
+import StoryPage from './StoryPage';
 
 export default async function ItemPage({ searchParams }: PageProps) {
   const itemID = searchParams?.['id'] ?? '';
@@ -12,12 +13,10 @@ export default async function ItemPage({ searchParams }: PageProps) {
   );
   const item = (await response.json()) as HNItem;
 
-  return (
-    <>
-      <h1>Hello, ItemPage!</h1>
-      <h2>ID: {item.id}</h2>
-      <h3>JSON:</h3>
-      <pre>{JSON.stringify(item, null, 4)}</pre>
-    </>
-  );
+  switch (item.type) {
+    case 'story':
+      return <StoryPage item={item} />;
+    default:
+      return <h1>Unsupported item type &apos;{item.type}&apos; 😢</h1>;
+  }
 }
