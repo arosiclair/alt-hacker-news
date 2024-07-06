@@ -1,4 +1,3 @@
-import DebugJSON from '../DebugJSON';
 import { fetchItem } from '../lib/API';
 import spacing from '../spacing';
 import CommentReplies from './CommentReplies';
@@ -16,7 +15,6 @@ export default async function Comment({ id }: CommentProps) {
 
   return (
     <div id={String(id)} style={{ margin: spacing(3) }}>
-      <DebugJSON>{item}</DebugJSON>
       <span>
         <b>{author}</b> • {timestamp}
       </span>
