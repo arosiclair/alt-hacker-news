@@ -1,5 +1,7 @@
 import DebugJSON from '../DebugJSON';
+import spacing from '../spacing';
 import { HNItem } from '../types/hacker-news';
+import CommentReplies from './CommentReplies';
 import Paragraphs from './Paragraphs';
 
 type CommentProps = {
@@ -14,17 +16,15 @@ export default async function Comment({ id }: CommentProps) {
 
   const author = item.by ?? '';
   const timestamp = item.time ?? '';
-  const replyIDs = item.kids ?? [];
-  const numReplies = replyIDs.length;
 
   return (
-    <div id={String(id)}>
+    <div id={String(id)} style={{ marginBottom: spacing(3) }}>
       <DebugJSON>{item}</DebugJSON>
       <span>
         <b>{author}</b> • {timestamp}
       </span>
       <Paragraphs rawText={item.text ?? ''} />
-      <div>➕ Show {numReplies} replies</div>
+      <CommentReplies replyIDs={item.kids ?? []} />
     </div>
   );
 }
