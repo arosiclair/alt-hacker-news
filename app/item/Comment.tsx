@@ -1,6 +1,6 @@
 import DebugJSON from '../DebugJSON';
+import { fetchItem } from '../lib/API';
 import spacing from '../spacing';
-import { HNItem } from '../types/hacker-news';
 import CommentReplies from './CommentReplies';
 import Paragraphs from './Paragraphs';
 
@@ -9,16 +9,13 @@ type CommentProps = {
 };
 
 export default async function Comment({ id }: CommentProps) {
-  const response = await fetch(
-    `https://hacker-news.firebaseio.com/v0/item/${id}.json`,
-  );
-  const item = (await response.json()) as HNItem;
+  const item = await fetchItem(id);
 
   const author = item.by ?? '';
   const timestamp = item.time ?? '';
 
   return (
-    <div id={String(id)} style={{ marginBottom: spacing(3) }}>
+    <div id={String(id)} style={{ margin: spacing(3) }}>
       <DebugJSON>{item}</DebugJSON>
       <span>
         <b>{author}</b> • {timestamp}
