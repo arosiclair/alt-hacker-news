@@ -6,11 +6,22 @@ type StoryPageProps = {
 
 export default function StoryPage({ item }: StoryPageProps) {
   return (
-    <>
-      <h1>Hello, StoryPage!</h1>
-      <h2>ID: {item.id}</h2>
-      <h3>JSON:</h3>
-      <pre>{JSON.stringify(item, null, 4)}</pre>
-    </>
+    <div>
+      <div>
+        <h1>Hello, StoryPage!</h1>
+        <h2>ID: {item.id}</h2>
+        <h3>JSON:</h3>
+        <pre>{JSON.stringify(item, null, 4)}</pre>
+      </div>
+
+      <h1>
+        <a href={item.url} target="_blank" rel="noopener noreferrer">
+          {item.title}
+        </a>
+      </h1>
+      <h2>
+        by {item.by} • {item.time} • {item.descendants} comments
+      </h2>
+    </div>
   );
 }
