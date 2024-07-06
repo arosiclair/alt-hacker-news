@@ -1,5 +1,6 @@
 import DebugJSON from '../DebugJSON';
 import { HNItem } from '../types/hacker-news';
+import Paragraphs from './Paragraphs';
 
 type StoryPageProps = {
   item: HNItem;
@@ -8,8 +9,6 @@ type StoryPageProps = {
 export default function StoryPage({ item }: StoryPageProps) {
   const numComments = item.descendants ?? 0;
   const commentText = numComments === 1 ? 'comment' : 'comments';
-
-  const storyParagraphs = (item.text ?? '').split('<p>');
 
   return (
     <div>
@@ -28,9 +27,8 @@ export default function StoryPage({ item }: StoryPageProps) {
       <h2>
         by {item.by} • {item.time} • {item.descendants} {commentText}
       </h2>
-      {storyParagraphs.map((paragraphText, index) => (
-        <p key={index}>{paragraphText}</p>
-      ))}
+
+      <Paragraphs rawText={item.text ?? ''} />
 
       <h3>Comments</h3>
     </div>
