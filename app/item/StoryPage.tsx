@@ -5,6 +5,11 @@ type StoryPageProps = {
 };
 
 export default function StoryPage({ item }: StoryPageProps) {
+  const numComments = item.descendants ?? 0;
+  const commentText = numComments === 1 ? 'comment' : 'comments';
+
+  const storyParagraphs = (item.text ?? '').split('<p>');
+
   return (
     <div>
       <div>
@@ -20,8 +25,13 @@ export default function StoryPage({ item }: StoryPageProps) {
         </a>
       </h1>
       <h2>
-        by {item.by} • {item.time} • {item.descendants} comments
+        by {item.by} • {item.time} • {item.descendants} {commentText}
       </h2>
+      {storyParagraphs.map((paragraphText, index) => (
+        <p key={index}>{paragraphText}</p>
+      ))}
+
+      <h3>Comments</h3>
     </div>
   );
 }
