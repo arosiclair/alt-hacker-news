@@ -1,3 +1,4 @@
+import { HNItem } from '../types/hacker-news';
 import { PageProps } from '../types/misc';
 
 export default async function ItemPage({ searchParams }: PageProps) {
@@ -9,13 +10,14 @@ export default async function ItemPage({ searchParams }: PageProps) {
   const response = await fetch(
     `https://hacker-news.firebaseio.com/v0/item/${itemID}.json`,
   );
-  const json = await response.json();
+  const item = (await response.json()) as HNItem;
 
   return (
     <>
       <h1>Hello, ItemPage!</h1>
-      <h2>ID: {itemID}</h2>
-      <h2>JSON: {JSON.stringify(json)}</h2>
+      <h2>ID: {item.id}</h2>
+      <h3>JSON:</h3>
+      <pre>{JSON.stringify(item, null, 4)}</pre>
     </>
   );
 }
