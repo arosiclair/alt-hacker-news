@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { HNItem } from '../types/hacker-news';
 import { fetchItems } from '../lib/API';
-import DebugJSON from '../DebugJSON';
+import Comment from './Comment';
 
 type CommentRepliesProps = {
   replyIDs: number[];
@@ -11,14 +11,14 @@ type CommentRepliesProps = {
 
 export default function CommentReplies({ replyIDs }: CommentRepliesProps) {
   const [isCollapsed, setIsCollapsed] = useState(true);
-  const [items, setItems] = useState<HNItem[]>([]);
+  const [replies, setReplies] = useState<HNItem[]>([]);
   const toggleCollapsed = () => setIsCollapsed(!isCollapsed);
 
   useEffect(() => {
-    if (!isCollapsed && !items.length) {
-      fetchItems(replyIDs).then(setItems);
+    if (!isCollapsed && !replies.length) {
+      fetchItems(replyIDs).then(setReplies);
     }
-  }, [isCollapsed, items.length, replyIDs]);
+  }, [isCollapsed, replies.length, replyIDs]);
 
   if (!replyIDs.length) {
     return null;
@@ -32,7 +32,9 @@ export default function CommentReplies({ replyIDs }: CommentRepliesProps) {
 
   return (
     <div onClick={toggleCollapsed}>
-      <DebugJSON>{items}</DebugJSON>
+      {replies.map((reply) => (
+        <Comment key={reply.id} item={reply} />
+      ))}
     </div>
   );
 }
