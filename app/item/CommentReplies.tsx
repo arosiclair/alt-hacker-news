@@ -31,9 +31,9 @@ export default function CommentReplies({ replyIDs }: CommentRepliesProps) {
   }
 
   return (
-    <div onClick={toggleCollapsed}>
+    <div>
       {replies.map((reply) => (
-        <Comment key={reply.id} item={reply} />
+        <Comment key={reply.id} item={reply} onHeaderClick={toggleCollapsed} />
       ))}
     </div>
   );
