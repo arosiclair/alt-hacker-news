@@ -1,5 +1,6 @@
 import DebugJSON from '../DebugJSON';
 import { HNItem } from '../types/hacker-news';
+import Comment from './Comment';
 import Paragraphs from './Paragraphs';
 
 type StoryPageProps = {
@@ -25,12 +26,15 @@ export default function StoryPage({ item }: StoryPageProps) {
         </a>
       </h1>
       <h2>
-        by {item.by} • {item.time} • {item.descendants} {commentText}
+        by {item.by} • {item.time} • {numComments} {commentText}
       </h2>
 
       <Paragraphs rawText={item.text ?? ''} />
 
       <h3>Comments</h3>
+      {item.kids?.map((commentID) => (
+        <Comment key={commentID} id={commentID} />
+      ))}
     </div>
   );
 }
