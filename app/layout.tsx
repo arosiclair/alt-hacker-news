@@ -2,8 +2,10 @@ import type { Metadata } from 'next';
 import { Noto_Sans } from 'next/font/google';
 import spacing from './spacing';
 
-import './styles/globals.css';
 import './styles/reset.css';
+import './styles/color.css';
+import './styles/typography.css';
+import './styles/layout.css';
 
 const noto = Noto_Sans({ subsets: ['latin'] });
 
