@@ -1,4 +1,5 @@
 import { fetchItems } from '../lib/API';
+import spacing from '../spacing';
 import { HNItem } from '../types/hacker-news';
 import Comment from './Comment';
 import Paragraphs from './Paragraphs';
@@ -27,9 +28,11 @@ export default async function StoryPage({ item }: StoryPageProps) {
       <Paragraphs rawText={item.text ?? ''} />
 
       <h3>Comments</h3>
-      {comments.map((comment) => (
-        <Comment key={comment.id} item={comment} />
-      ))}
+      <div style={{ margin: spacing(0, 3) }}>
+        {comments.map((comment) => (
+          <Comment key={comment.id} item={comment} />
+        ))}
+      </div>
     </div>
   );
 }

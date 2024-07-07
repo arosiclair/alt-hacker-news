@@ -15,7 +15,7 @@ export default function Comment({ item, onHeaderClick }: CommentProps) {
   const timestamp = item.time ?? '';
 
   return (
-    <div id={String(item.id)} style={{ margin: spacing(3) }}>
+    <div id={String(item.id)} style={{ marginBottom: spacing(3) }}>
       <span onClick={onHeaderClick}>
         <b>{author}</b> • {timestamp}
       </span>
