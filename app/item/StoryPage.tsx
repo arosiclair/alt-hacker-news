@@ -12,6 +12,7 @@ export default async function StoryPage({ item }: StoryPageProps) {
   const numComments = item.descendants ?? 0;
   const commentText = numComments === 1 ? 'comment' : 'comments';
   const comments = await fetchItems(item.kids ?? []);
+  const hasText = Boolean(item.text ?? '');
 
   return (
     <div>
@@ -25,7 +26,18 @@ export default async function StoryPage({ item }: StoryPageProps) {
         {commentText}
       </p>
 
-      <Paragraphs rawText={item.text ?? ''} />
+      {hasText && (
+        <div
+          style={{
+            border: '1px solid black',
+            padding: spacing(2),
+            borderRadius: spacing(0.5),
+            marginBottom: spacing(2),
+          }}
+        >
+          <Paragraphs rawText={item.text ?? ''} noLastMargin />
+        </div>
+      )}
 
       <h3>Comments</h3>
       <div>
