@@ -7,7 +7,7 @@ import './styles/color.css';
 import './styles/typography.css';
 import './styles/layout.css';
 
-const noto = Noto_Sans({ subsets: ['latin'] });
+const noto = Noto_Sans({ subsets: ['latin'], display: 'swap' });
 
 export const metadata: Metadata = {
   title: 'Alt Hacker News',
@@ -21,11 +21,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={noto.className} style={{ padding: spacing(3) }}>
-        <h1>
-          <em>alt</em> Hacker News
-        </h1>
-        {children}
+      <body className={noto.className}>
+        <div id="page-container" style={{ padding: spacing(2, 3) }}>
+          <h1>
+            <em>alt</em> Hacker News
+          </h1>
+          {children}
+        </div>
       </body>
     </html>
   );
