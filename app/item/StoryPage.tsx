@@ -2,7 +2,7 @@ import { fetchItems } from '../lib/API';
 import spacing from '../spacing';
 import { HNItem } from '../types/hacker-news';
 import Comment from './Comment';
-import Paragraphs from './Paragraphs';
+import HNText from './HNText';
 import Timestamp from './Timestamp';
 
 type StoryPageProps = {
@@ -29,7 +29,7 @@ export default async function StoryPage({ item }: StoryPageProps) {
 
       {hasText && (
         <div style={{ marginBottom: spacing(2) }}>
-          <Paragraphs rawText={item.text ?? ''} noLastMargin />
+          <HNText text={item.text ?? ''} />
         </div>
       )}
 

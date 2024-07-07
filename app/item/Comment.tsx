@@ -3,7 +3,7 @@
 import spacing from '../spacing';
 import { HNItem } from '../types/hacker-news';
 import CommentReplies from './CommentReplies';
-import Paragraphs from './Paragraphs';
+import HNText from './HNText';
 import Timestamp from './Timestamp';
 
 type CommentProps = {
@@ -24,7 +24,7 @@ export default function Comment({ item, isLast, onHeaderClick }: CommentProps) {
       <span onClick={onHeaderClick}>
         <b>{author}</b> • <Timestamp>{timestamp}</Timestamp>
       </span>
-      <Paragraphs rawText={item.text ?? ''} />
+      <HNText text={item.text ?? ''} />
       <CommentReplies replyIDs={item.kids ?? []} />
     </div>
   );
