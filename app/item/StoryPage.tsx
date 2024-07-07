@@ -29,8 +29,12 @@ export default async function StoryPage({ item }: StoryPageProps) {
 
       <h3>Comments</h3>
       <div style={{ margin: spacing(0, 3) }}>
-        {comments.map((comment) => (
-          <Comment key={comment.id} item={comment} />
+        {comments.map((comment, index) => (
+          <Comment
+            key={comment.id}
+            item={comment}
+            isLast={index === comments.length - 1}
+          />
         ))}
       </div>
     </div>

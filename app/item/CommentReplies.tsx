@@ -5,7 +5,6 @@ import { HNItem } from '../types/hacker-news';
 import { fetchItems } from '../lib/API';
 import Comment from './Comment';
 import spacing from '../spacing';
-import CommentCollapsedReplies from './CommentCollapsedReplies';
 
 type CommentRepliesProps = {
   replyIDs: number[];
@@ -16,7 +15,7 @@ export default function CommentReplies({ replyIDs }: CommentRepliesProps) {
   const [replies, setReplies] = useState<HNItem[]>([]);
   const toggleCollapsed = () => setIsCollapsed(!isCollapsed);
   const containerStyle: CSSProperties = {
-    margin: spacing(1, 0, 1, 1),
+    margin: spacing(1, 0),
     display: 'flex',
   };
 
@@ -33,25 +32,46 @@ export default function CommentReplies({ replyIDs }: CommentRepliesProps) {
   if (isCollapsed) {
     return (
       <div style={containerStyle} onClick={toggleCollapsed}>
-        <CommentCollapsedReplies numReplies={replyIDs.length} />
+        <CollapsedReplies numReplies={replyIDs.length} />
       </div>
     );
   }
 
   return (
     <div style={containerStyle}>
-      <div
-        style={{ padding: spacing(0, 2), borderLeft: '1px black solid' }}
-      ></div>
+      <Indent />
       <div>
-        {replies.map((reply) => (
+        {replies.map((reply, index) => (
           <Comment
             key={reply.id}
             item={reply}
             onHeaderClick={toggleCollapsed}
+            isLast={index === replies.length - 1}
           />
         ))}
       </div>
+    </div>
+  );
+}
+
+type CollapsedRepliesProps = {
+  numReplies: number;
+};
+
+function CollapsedReplies({ numReplies }: CollapsedRepliesProps) {
+  const replyText = numReplies === 1 ? 'reply' : 'replies';
+  return (
+    <span>
+      ➕ Show {numReplies} {replyText}
+    </span>
+  );
+}
+
+function Indent() {
+  return (
+    <div style={{ display: 'flex' }}>
+      <div style={{ width: spacing(1), borderRight: '1px black solid' }} />
+      <div style={{ width: spacing(2) }} />
     </div>
   );
 }
