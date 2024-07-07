@@ -6,6 +6,7 @@ import './styles/reset.css';
 import './styles/color.css';
 import './styles/typography.css';
 import './styles/layout.css';
+import Link from 'next/link';
 
 const noto = Noto_Sans({ subsets: ['latin'], display: 'swap' });
 
@@ -23,12 +24,22 @@ export default function RootLayout({
     <html lang="en">
       <body className={noto.className}>
         <div id="page-container" style={{ padding: spacing(2, 3) }}>
-          <h1>
-            <em>alt</em> Hacker News
-          </h1>
+          <Header />
           {children}
         </div>
       </body>
     </html>
+  );
+}
+
+function Header() {
+  return (
+    <div style={{ display: 'flex' }}>
+      <Link href="/">
+        <h1>
+          <em>alt</em> Hacker News
+        </h1>
+      </Link>
+    </div>
   );
 }
