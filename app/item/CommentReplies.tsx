@@ -31,7 +31,13 @@ export default function CommentReplies({ replyIDs }: CommentRepliesProps) {
 
   if (isCollapsed) {
     return (
-      <div style={containerStyle} onClick={toggleCollapsed}>
+      <div
+        style={{
+          ...containerStyle,
+          cursor: 'pointer',
+        }}
+        onClick={toggleCollapsed}
+      >
         <CollapsedReplies numReplies={replyIDs.length} />
       </div>
     );
@@ -60,9 +66,9 @@ type CollapsedRepliesProps = {
 function CollapsedReplies({ numReplies }: CollapsedRepliesProps) {
   const replyText = numReplies === 1 ? 'reply' : 'replies';
   return (
-    <span>
-      ➕ Show {numReplies} {replyText}
-    </span>
+    <div>
+      ➕ show {numReplies} {replyText}
+    </div>
   );
 }
 
@@ -72,7 +78,7 @@ type IndentProps = {
 
 function Indent({ onClick }: IndentProps) {
   return (
-    <div style={{ display: 'flex' }} onClick={onClick}>
+    <div style={{ display: 'flex', cursor: 'pointer' }} onClick={onClick}>
       <div style={{ width: spacing(2), borderRight: '1px black solid' }} />
       <div style={{ width: spacing(3) }} />
     </div>
