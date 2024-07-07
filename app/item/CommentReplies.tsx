@@ -39,13 +39,12 @@ export default function CommentReplies({ replyIDs }: CommentRepliesProps) {
 
   return (
     <div style={containerStyle}>
-      <Indent />
+      <Indent onClick={toggleCollapsed} />
       <div>
         {replies.map((reply, index) => (
           <Comment
             key={reply.id}
             item={reply}
-            onHeaderClick={toggleCollapsed}
             isLast={index === replies.length - 1}
           />
         ))}
@@ -67,11 +66,15 @@ function CollapsedReplies({ numReplies }: CollapsedRepliesProps) {
   );
 }
 
-function Indent() {
+type IndentProps = {
+  onClick?: () => void;
+};
+
+function Indent({ onClick }: IndentProps) {
   return (
-    <div style={{ display: 'flex' }}>
-      <div style={{ width: spacing(1), borderRight: '1px black solid' }} />
-      <div style={{ width: spacing(2) }} />
+    <div style={{ display: 'flex' }} onClick={onClick}>
+      <div style={{ width: spacing(2), borderRight: '1px black solid' }} />
+      <div style={{ width: spacing(3) }} />
     </div>
   );
 }
