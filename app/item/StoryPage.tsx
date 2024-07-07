@@ -15,20 +15,20 @@ export default async function StoryPage({ item }: StoryPageProps) {
 
   return (
     <div>
-      <h1>
+      <h2>
         <a href={item.url} target="_blank" rel="noopener noreferrer">
           {item.title}
         </a>
-      </h1>
-      <h2>
+      </h2>
+      <h3>
         by {item.by} • {item.time} • {item.score} points • {numComments}{' '}
         {commentText}
-      </h2>
+      </h3>
 
       <Paragraphs rawText={item.text ?? ''} />
 
-      <h3>Comments</h3>
-      <div style={{ margin: spacing(0, 3) }}>
+      <h4>Comments</h4>
+      <div>
         {comments.map((comment, index) => (
           <Comment
             key={comment.id}
