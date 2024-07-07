@@ -14,10 +14,6 @@ export default function CommentReplies({ replyIDs }: CommentRepliesProps) {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [replies, setReplies] = useState<HNItem[]>([]);
   const toggleCollapsed = () => setIsCollapsed(!isCollapsed);
-  const containerStyle: CSSProperties = {
-    margin: spacing(1, 0),
-    display: 'flex',
-  };
 
   useEffect(() => {
     if (!isCollapsed && !replies.length) {
@@ -31,20 +27,19 @@ export default function CommentReplies({ replyIDs }: CommentRepliesProps) {
 
   if (isCollapsed) {
     return (
-      <div
-        style={{
-          ...containerStyle,
-          cursor: 'pointer',
-        }}
-        onClick={toggleCollapsed}
-      >
+      <div style={{ cursor: 'pointer' }} onClick={toggleCollapsed}>
         <CollapsedReplies numReplies={replyIDs.length} />
       </div>
     );
   }
 
   return (
-    <div style={containerStyle}>
+    <div
+      style={{
+        marginTop: spacing(1.5),
+        display: 'flex',
+      }}
+    >
       <Indent onClick={toggleCollapsed} />
       <div>
         {replies.map((reply, index) => (
