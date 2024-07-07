@@ -21,7 +21,7 @@ export default async function StoryPage({ item }: StoryPageProps) {
         </a>
       </h2>
       <p>
-        by <b>{item.by}</b> • {item.time} • {item.score} points • {numComments}{' '}
+        {item.score} points • by <b>{item.by}</b> • {item.time} • {numComments}{' '}
         {commentText}
       </p>
 
