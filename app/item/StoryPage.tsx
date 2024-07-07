@@ -29,7 +29,7 @@ export default async function StoryPage({ item }: StoryPageProps) {
 
       {hasText && (
         <div style={{ marginBottom: spacing(2) }}>
-          <HNText text={item.text ?? ''} />
+          <HNText>{item.text}</HNText>
         </div>
       )}
 

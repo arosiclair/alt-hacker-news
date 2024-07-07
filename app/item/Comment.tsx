@@ -9,10 +9,9 @@ import Timestamp from './Timestamp';
 type CommentProps = {
   item: HNItem;
   isLast: boolean;
-  onHeaderClick?: () => void;
 };
 
-export default function Comment({ item, isLast, onHeaderClick }: CommentProps) {
+export default function Comment({ item, isLast }: CommentProps) {
   const author = item.by ?? '';
   const timestamp = item.time ?? 0;
 
@@ -21,10 +20,10 @@ export default function Comment({ item, isLast, onHeaderClick }: CommentProps) {
       id={String(item.id)}
       style={{ marginBottom: spacing(!isLast ? 3 : 1) }}
     >
-      <span onClick={onHeaderClick}>
+      <div>
         <b>{author}</b> • <Timestamp>{timestamp}</Timestamp>
-      </span>
-      <HNText text={item.text ?? ''} />
+      </div>
+      <HNText>{item.text}</HNText>
       <CommentReplies replyIDs={item.kids ?? []} />
     </div>
   );
