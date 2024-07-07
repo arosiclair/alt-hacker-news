@@ -27,18 +27,12 @@ export default async function StoryPage({ item }: StoryPageProps) {
       </p>
 
       {hasText && (
-        <div
-          style={{
-            border: '1px solid black',
-            padding: spacing(2),
-            borderRadius: spacing(0.5),
-            marginBottom: spacing(2),
-          }}
-        >
+        <div style={{ marginBottom: spacing(2) }}>
           <Paragraphs rawText={item.text ?? ''} noLastMargin />
         </div>
       )}
 
+      <hr />
       <h3>Comments</h3>
       <div>
         {comments.map((comment, index) => (
