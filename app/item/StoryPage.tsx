@@ -3,6 +3,7 @@ import spacing from '../spacing';
 import { HNItem } from '../types/hacker-news';
 import Comment from './Comment';
 import Paragraphs from './Paragraphs';
+import Timestamp from './Timestamp';
 
 type StoryPageProps = {
   item: HNItem;
@@ -22,8 +23,8 @@ export default async function StoryPage({ item }: StoryPageProps) {
         </a>
       </h2>
       <p>
-        {item.score} points • by <b>{item.by}</b> • {item.time} • {numComments}{' '}
-        {commentText}
+        {item.score} points • by <b>{item.by}</b> •{' '}
+        <Timestamp>{item.time ?? 0}</Timestamp> • {numComments} {commentText}
       </p>
 
       {hasText && (
