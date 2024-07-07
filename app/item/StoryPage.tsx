@@ -20,14 +20,14 @@ export default async function StoryPage({ item }: StoryPageProps) {
           {item.title}
         </a>
       </h2>
-      <h3>
-        by {item.by} • {item.time} • {item.score} points • {numComments}{' '}
+      <p>
+        by <b>{item.by}</b> • {item.time} • {item.score} points • {numComments}{' '}
         {commentText}
-      </h3>
+      </p>
 
       <Paragraphs rawText={item.text ?? ''} />
 
-      <h4>Comments</h4>
+      <h3>Comments</h3>
       <div>
         {comments.map((comment, index) => (
           <Comment
