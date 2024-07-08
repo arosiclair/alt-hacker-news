@@ -20,7 +20,7 @@ export default function Comment({ item, isLast }: CommentProps) {
       id={String(item.id)}
       style={{ marginBottom: spacing(!isLast ? 3 : 1) }}
     >
-      <div>
+      <div style={{ marginBottom: spacing(1) }}>
         <b>{author}</b> • <Timestamp>{timestamp}</Timestamp>
       </div>
       <HNText>{item.text}</HNText>

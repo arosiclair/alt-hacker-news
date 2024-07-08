@@ -10,6 +10,9 @@ export default async function ItemPage({ searchParams }: PageProps) {
 
   const itemID = Array.isArray(idParam) ? idParam.join(',') : idParam;
   const item = await fetchItem(itemID);
+  if (!item) {
+    return <h1>Not Found</h1>;
+  }
 
   switch (item.type) {
     case 'story':

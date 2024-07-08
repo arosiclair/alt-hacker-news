@@ -36,13 +36,15 @@ export default async function StoryPage({ item }: StoryPageProps) {
       <hr />
       <h3>Comments</h3>
       <div>
-        {comments.map((comment, index) => (
-          <Comment
-            key={comment.id}
-            item={comment}
-            isLast={index === comments.length - 1}
-          />
-        ))}
+        {comments
+          .filter((comment) => !!comment)
+          .map((comment, index) => (
+            <Comment
+              key={comment.id}
+              item={comment}
+              isLast={index === comments.length - 1}
+            />
+          ))}
       </div>
     </div>
   );
