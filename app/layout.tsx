@@ -34,7 +34,7 @@ export default function RootLayout({
 
 function Header() {
   return (
-    <div style={{ display: 'flex', margin: spacing(1, 0) }}>
+    <div style={{ display: 'flex', marginBottom: spacing(3) }}>
       <Link href="/">
         <h2>
           <em>alt</em> Hacker News
