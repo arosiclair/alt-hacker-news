@@ -1,5 +1,11 @@
+html {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+}
+
 @media (prefers-color-scheme: dark) {
   html {
-    color-scheme: dark;
+    background-color: #212121;
+    color: rgba(255, 255, 255, 0.9);
   }
 }
