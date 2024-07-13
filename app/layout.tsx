@@ -34,11 +34,11 @@ export default function RootLayout({
 
 function Header() {
   return (
-    <div style={{ display: 'flex' }}>
+    <div style={{ display: 'flex', margin: spacing(1, 0) }}>
       <Link href="/">
-        <h1>
+        <h2>
           <em>alt</em> Hacker News
-        </h1>
+        </h2>
       </Link>
     </div>
   );

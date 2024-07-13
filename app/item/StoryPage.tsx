@@ -17,11 +17,11 @@ export default async function StoryPage({ item }: StoryPageProps) {
 
   return (
     <div>
-      <h2>
+      <h1>
         <a href={item.url} target="_blank" rel="noopener noreferrer">
           {item.title}
         </a>
-      </h2>
+      </h1>
       <p>
         {item.score} points • by <b>{item.by}</b> •{' '}
         <Timestamp>{item.time ?? 0}</Timestamp> • {numComments} {commentText}
