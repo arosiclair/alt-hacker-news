@@ -29,7 +29,11 @@ export default function CommentReplies({ replyIDs }: CommentRepliesProps) {
 
   if (isCollapsed) {
     return (
-      <div style={{ cursor: 'pointer' }} onClick={toggleCollapsed}>
+      <div
+        className="collapsed-replies-container"
+        style={{ cursor: 'pointer' }}
+        onClick={toggleCollapsed}
+      >
         <CollapsedReplies numReplies={replyIDs.length} />
       </div>
     );
@@ -39,19 +43,20 @@ export default function CommentReplies({ replyIDs }: CommentRepliesProps) {
     <div
       style={{
         marginTop: spacing(1.5),
-        display: 'flex',
+        marginLeft: spacing(1),
+        paddingLeft: spacing(3),
+        borderLeft: '1px black solid',
+        cursor: 'pointer',
       }}
+      onClick={toggleCollapsed}
     >
-      <Indent onClick={toggleCollapsed} />
-      <div>
-        {replies.map((reply, index) => (
-          <Comment
-            key={reply.id}
-            item={reply}
-            isLast={index === replies.length - 1}
-          />
-        ))}
-      </div>
+      {replies.map((reply, index) => (
+        <Comment
+          key={reply.id}
+          item={reply}
+          isLast={index === replies.length - 1}
+        />
+      ))}
     </div>
   );
 }
@@ -65,19 +70,6 @@ function CollapsedReplies({ numReplies }: CollapsedRepliesProps) {
   return (
     <div>
       ➕ show {numReplies} {replyText}
-    </div>
-  );
-}
-
-type IndentProps = {
-  onClick?: () => void;
-};
-
-function Indent({ onClick }: IndentProps) {
-  return (
-    <div style={{ display: 'flex', cursor: 'pointer' }} onClick={onClick}>
-      <div style={{ width: spacing(2), borderRight: '1px black solid' }} />
-      <div style={{ width: spacing(3) }} />
     </div>
   );
 }
