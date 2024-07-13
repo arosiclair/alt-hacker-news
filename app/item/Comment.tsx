@@ -22,7 +22,7 @@ export default function Comment({ item, isLast }: CommentProps) {
       style={{ marginBottom: spacing(!isLast ? 3 : 1), cursor: 'default' }}
       onClick={(event) => event.stopPropagation()}
     >
-      <div style={{ marginBottom: spacing(1) }}>
+      <div className="comment-byline" style={{ marginBottom: spacing(1) }}>
         <b>{author}</b> • <Timestamp>{timestamp}</Timestamp>
       </div>
       <HNText>{item.text}</HNText>
