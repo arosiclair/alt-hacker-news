@@ -1,4 +1,10 @@
+body {
+  width: 100vw;
+}
+
 #page-container {
-  max-width: 1024px;
+  width: min(100%, 1024px);
   margin: 0 auto;
+  overflow-wrap: break-word;
+  overflow-x: hidden;
 }
