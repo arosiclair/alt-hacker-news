@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Noto_Sans } from 'next/font/google';
+import localFont from 'next/font/local';
 import spacing from './spacing';
 
 import './styles/reset.css';
@@ -8,7 +8,10 @@ import './styles/typography.css';
 import './styles/layout.css';
 import Link from 'next/link';
 
-const font = Noto_Sans({ subsets: ['latin'], display: 'swap' });
+const font = localFont({
+  src: './fonts/GeistVF.ttf',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'alt Hacker News',
