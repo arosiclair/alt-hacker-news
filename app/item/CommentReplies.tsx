@@ -17,9 +17,7 @@ export default function CommentReplies({ replyIDs }: CommentRepliesProps) {
 
   useEffect(() => {
     if (!isCollapsed && !replies.length) {
-      fetchItems(replyIDs).then((replies) =>
-        setReplies(replies.filter((reply) => !!reply)),
-      );
+      fetchItems(replyIDs).then(setReplies);
     }
   }, [isCollapsed, replies.length, replyIDs]);
 

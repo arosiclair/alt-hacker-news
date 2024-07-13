@@ -8,5 +8,7 @@ export async function fetchItem(id: string | number) {
 }
 
 export async function fetchItems(ids: string[] | number[]) {
-  return Promise.all(ids.map((id) => fetchItem(id)));
+  return Promise.all(ids.map((id) => fetchItem(id))).then(
+    (items) => items.filter((item) => item && !item.deleted) as HNItem[],
+  );
 }
