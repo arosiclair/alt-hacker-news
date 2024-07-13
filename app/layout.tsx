@@ -10,6 +10,7 @@ import Link from 'next/link';
 
 const font = localFont({
   src: './fonts/GeistVF.ttf',
+  fallback: ['Arial', 'Helvetica Neue', 'Helvetica', 'sans-serif'],
   display: 'swap',
 });
 
