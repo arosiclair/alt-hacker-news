@@ -36,4 +36,9 @@ b {
 
 p > a {
   font-weight: 500;
+  text-underline-offset: 0.25em;
+}
+
+a {
+  text-underline-offset: 0.1em;
 }
