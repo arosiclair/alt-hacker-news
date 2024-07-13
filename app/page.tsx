@@ -4,6 +4,9 @@ export default function Home() {
       <img
         src="/the-home-screen.jpg"
         alt="SpongeBob rainbow meme with THE HOME SCREEN text"
+        style={{
+          maxWidth: '100%',
+        }}
       />
     </div>
   );
