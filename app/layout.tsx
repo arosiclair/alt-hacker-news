@@ -9,7 +9,7 @@ import './styles/typography.css';
 import './styles/layout.css';
 
 const font = localFont({
-  src: './fonts/GeistVF.ttf',
+  src: '../public/fonts/GeistVF.ttf',
   fallback: ['Arial', 'Helvetica Neue', 'Helvetica', 'sans-serif'],
   display: 'swap',
 });
