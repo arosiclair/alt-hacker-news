@@ -1,7 +1,7 @@
 'use client';
 
-import spacing from '../spacing';
-import { HNItem } from '../types/hacker-news';
+import spacing from '../../spacing';
+import { HNItem } from '../../types/hacker-news';
 import Byline from './Byline';
 import CommentReplies from './CommentReplies';
 import HNText from './HNText';

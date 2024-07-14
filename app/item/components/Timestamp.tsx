@@ -1,4 +1,4 @@
-import { formatDate, formatISO9075, formatRelative } from 'date-fns';
+import { formatISO9075, formatRelative } from 'date-fns';
 
 type TimestampProps = {
   /** A unix timestamp in the past */

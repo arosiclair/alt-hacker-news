@@ -1,9 +1,9 @@
 import { fetchItems } from '../lib/API';
 import spacing from '../spacing';
 import { HNItem } from '../types/hacker-news';
-import Byline from './Byline';
-import Comment from './Comment';
-import HNText from './HNText';
+import Byline from './components/Byline';
+import Comment from './components/Comment';
+import HNText from './components/HNText';
 
 type StoryPageProps = {
   item: HNItem;

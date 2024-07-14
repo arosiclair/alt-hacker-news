@@ -1,10 +1,10 @@
 'use client';
 
-import { CSSProperties, useEffect, useState } from 'react';
-import { HNItem } from '../types/hacker-news';
-import { fetchItems } from '../lib/API';
+import { useEffect, useState } from 'react';
+import { HNItem } from '../../types/hacker-news';
+import { fetchItems } from '../../lib/API';
 import Comment from './Comment';
-import spacing from '../spacing';
+import spacing from '../../spacing';
 
 type CommentRepliesProps = {
   replyIDs: number[];
