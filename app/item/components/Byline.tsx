@@ -2,7 +2,7 @@ import { CSSProperties, ReactElement } from 'react';
 import { HNItem } from '../../types/hacker-news';
 import Timestamp from './Timestamp';
 import spacing from '../../spacing';
-import Link from 'next/link';
+import ItemLink from './ItemLink';
 
 type BylineProps = {
   style?: CSSProperties;
@@ -46,9 +46,9 @@ export default function Byline({
 
   if (timestamp) {
     fragments.push(
-      <Link href={`/item?id=${item.id}`} className="quiet">
+      <ItemLink id={item.id} className="quiet">
         <Timestamp>{item.time ?? 0}</Timestamp>
-      </Link>,
+      </ItemLink>,
     );
   }
 

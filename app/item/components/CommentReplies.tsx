@@ -5,12 +5,19 @@ import { HNItem } from '../../types/hacker-news';
 import { fetchItems } from '../../lib/API';
 import Comment from './Comment';
 import spacing from '../../spacing';
+import ItemLink from './ItemLink';
 
 type CommentRepliesProps = {
+  itemID: number;
   replyIDs: number[];
+  indent: number;
 };
 
-export default function CommentReplies({ replyIDs }: CommentRepliesProps) {
+export default function CommentReplies({
+  itemID,
+  replyIDs,
+  indent,
+}: CommentRepliesProps) {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [replies, setReplies] = useState<HNItem[]>([]);
   const toggleCollapsed = () => setIsCollapsed(!isCollapsed);
@@ -23,6 +30,10 @@ export default function CommentReplies({ replyIDs }: CommentRepliesProps) {
 
   if (!replyIDs.length) {
     return null;
+  }
+
+  if (indent === 5) {
+    return <RepliesLink numReplies={replyIDs.length} itemID={itemID} />;
   }
 
   if (isCollapsed) {
@@ -53,6 +64,7 @@ export default function CommentReplies({ replyIDs }: CommentRepliesProps) {
           key={reply.id}
           item={reply}
           isLast={index === replies.length - 1}
+          indent={indent}
         />
       ))}
     </div>
@@ -68,6 +80,25 @@ function CollapsedReplies({ numReplies }: CollapsedRepliesProps) {
   return (
     <div>
       ➕ show {numReplies} {replyText}
+    </div>
+  );
+}
+
+type RepliesLinkProps = {
+  numReplies: number;
+  itemID: number;
+};
+
+function RepliesLink({ numReplies, itemID }: RepliesLinkProps) {
+  const replyText = numReplies === 1 ? 'reply' : 'replies';
+  return (
+    <div>
+      🔗{' '}
+      <ItemLink id={itemID} className="quiet">
+        <span>
+          view {numReplies} {replyText}
+        </span>
+      </ItemLink>
     </div>
   );
 }
