@@ -1,17 +1,15 @@
 import { fetchItems } from '../lib/API';
 import spacing from '../spacing';
 import { HNItem } from '../types/hacker-news';
+import Byline from './Byline';
 import Comment from './Comment';
 import HNText from './HNText';
-import Timestamp from './Timestamp';
 
 type StoryPageProps = {
   item: HNItem;
 };
 
 export default async function StoryPage({ item }: StoryPageProps) {
-  const numComments = item.descendants ?? 0;
-  const commentText = numComments === 1 ? 'comment' : 'comments';
   const comments = await fetchItems(item.kids ?? []);
   const hasText = Boolean(item.text ?? '');
 
@@ -22,10 +20,8 @@ export default async function StoryPage({ item }: StoryPageProps) {
           {item.title}
         </a>
       </h1>
-      <p>
-        {item.score} points • by <b>{item.by}</b> •{' '}
-        <Timestamp>{item.time ?? 0}</Timestamp> • {numComments} {commentText}
-      </p>
+
+      <Byline item={item} score author timestamp comments />
 
       {hasText && (
         <div style={{ marginBottom: spacing(2) }}>

@@ -2,9 +2,9 @@
 
 import spacing from '../spacing';
 import { HNItem } from '../types/hacker-news';
+import Byline from './Byline';
 import CommentReplies from './CommentReplies';
 import HNText from './HNText';
-import Timestamp from './Timestamp';
 
 type CommentProps = {
   item: HNItem;
@@ -12,9 +12,6 @@ type CommentProps = {
 };
 
 export default function Comment({ item, isLast }: CommentProps) {
-  const author = item.by ?? '';
-  const timestamp = item.time ?? 0;
-
   return (
     <div
       id={String(item.id)}
@@ -22,9 +19,7 @@ export default function Comment({ item, isLast }: CommentProps) {
       style={{ marginBottom: spacing(!isLast ? 3 : 1), cursor: 'default' }}
       onClick={(event) => event.stopPropagation()}
     >
-      <div className="comment-byline" style={{ marginBottom: spacing(1) }}>
-        <b>{author}</b> • <Timestamp>{timestamp}</Timestamp>
-      </div>
+      <Byline item={item} author timestamp />
       <HNText>{item.text}</HNText>
       <CommentReplies replyIDs={item.kids ?? []} />
     </div>

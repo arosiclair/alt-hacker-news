@@ -1,27 +1,21 @@
-import DebugJSON from '../DebugJSON';
 import { fetchItems } from '../lib/API';
 import spacing from '../spacing';
 import { HNItem } from '../types/hacker-news';
+import Byline from './Byline';
 import Comment from './Comment';
 import HNText from './HNText';
-import Timestamp from './Timestamp';
 
 type ItemPageProps = {
   item: HNItem;
 };
 export default async function CommentPage({ item }: ItemPageProps) {
-  const numReplies = item.kids?.length ?? 0;
-  const replyText = numReplies === 1 ? 'reply' : 'replies';
   const hasText = !!item.text;
 
   const replies = await fetchItems(item.kids ?? []);
 
   return (
     <div>
-      <p>
-        by <b>{item.by}</b> • <Timestamp>{item.time ?? 0}</Timestamp> •{' '}
-        {numReplies} {replyText}
-      </p>
+      <Byline item={item} author timestamp replies />
 
       {hasText && (
         <div style={{ marginBottom: spacing(2) }}>
