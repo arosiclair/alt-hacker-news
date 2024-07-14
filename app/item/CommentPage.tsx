@@ -12,6 +12,7 @@ export default async function CommentPage({ item }: ItemPageProps) {
   const hasText = !!item.text;
 
   const replies = await fetchItems(item.kids ?? []);
+  const hasReplies = !!replies.length;
 
   return (
     <div>
@@ -23,17 +24,21 @@ export default async function CommentPage({ item }: ItemPageProps) {
         </div>
       )}
 
-      <hr />
-      <h3>Replies</h3>
-      <div>
-        {replies.map((reply, index) => (
-          <Comment
-            key={reply.id}
-            item={reply}
-            isLast={index === replies.length - 1}
-          />
-        ))}
-      </div>
+      {hasReplies && (
+        <>
+          <hr />
+          <h3>Replies</h3>
+          <div>
+            {replies.map((reply, index) => (
+              <Comment
+                key={reply.id}
+                item={reply}
+                isLast={index === replies.length - 1}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 }
