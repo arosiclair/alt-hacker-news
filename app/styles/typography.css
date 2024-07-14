@@ -44,6 +44,15 @@ a {
   text-underline-offset: 0.2em;
 }
 
+a.quiet {
+  text-decoration: none;
+  color: inherit;
+}
+
+a.quiet:hover {
+  text-decoration: underline;
+}
+
 @font-face {
   font-family: 'Geist Mono';
   src: url('/public/fonts/GeistMonoVF.ttf');
