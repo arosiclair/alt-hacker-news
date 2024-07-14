@@ -5,6 +5,7 @@ body {
 
 h1 {
   margin-block-end: 0.25em;
+  line-height: 1.1em;
 }
 
 h2 {
@@ -40,5 +41,5 @@ p > a {
 }
 
 a {
-  text-underline-offset: 0.1em;
+  text-underline-offset: 0.2em;
 }
