@@ -43,3 +43,16 @@ p > a {
 a {
   text-underline-offset: 0.2em;
 }
+
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('/public/fonts/GeistMonoVF.ttf');
+  font-display: swap;
+}
+
+pre {
+  font-family: 'Geist Mono', monospace;
+  overflow: auto;
+  border-radius: 0.5em;
+  padding: 2em;
+}

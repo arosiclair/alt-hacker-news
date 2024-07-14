@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import spacing from './spacing';
+import Link from 'next/link';
 
 import './styles/reset.css';
 import './styles/color.css';
 import './styles/typography.css';
 import './styles/layout.css';
-import Link from 'next/link';
 
 const font = localFont({
   src: './fonts/GeistVF.ttf',
