@@ -12,9 +12,9 @@ export async function fetchItems(ids: string[] | number[]) {
   );
 }
 
-export async function fetchTopStories() {
+export async function fetchTopStories(limit: number) {
   const topStoryIDs = await fetchTopStoryIDs();
-  return fetchItems(topStoryIDs);
+  return fetchItems(topStoryIDs.slice(0, limit));
 }
 
 async function fetchTopStoryIDs() {

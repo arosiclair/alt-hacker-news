@@ -5,7 +5,7 @@ import { fetchTopStories } from './lib/API';
 import './styles/home.css';
 
 export default async function Home() {
-  const topStories = await fetchTopStories();
+  const topStories = await fetchTopStories(50);
 
   return (
     <div>
