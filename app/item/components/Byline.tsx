@@ -54,17 +54,17 @@ export default function Byline({
 
   if (comments) {
     fragments.push(
-      <span>
+      <ItemLink id={item.id}>
         {numComments} {commentText}
-      </span>,
+      </ItemLink>,
     );
   }
 
   if (replies) {
     fragments.push(
-      <span>
+      <ItemLink id={item.id}>
         {numReplies} {replyText}
-      </span>,
+      </ItemLink>,
     );
   }
 

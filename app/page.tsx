@@ -1,5 +1,4 @@
 import Byline from './item/components/Byline';
-import ItemLink from './item/components/ItemLink';
 import { fetchTopStories } from './lib/API';
 
 import './styles/home.css';
@@ -12,7 +11,7 @@ export default async function Home() {
       <ol id="stories-list">
         {topStories.map((story) => (
           <li key={story.id} id={String(story.id)}>
-            <ItemLink id={story.id}>{story.title ?? ''}</ItemLink>
+            <a href={story.url}>{story.title ?? ''}</a>
             <Byline item={story} score author timestamp comments />
           </li>
         ))}
