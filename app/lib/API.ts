@@ -1,14 +1,29 @@
 import { HNItem } from '../types/hacker-news';
 
 export async function fetchItem(id: string | number) {
-  const response = await fetch(
+  return fetchJSON(
     `https://hacker-news.firebaseio.com/v0/item/${id}.json`,
-  );
-  return (await response.json()) as HNItem | null;
+  ) as Promise<HNItem | null>;
 }
 
 export async function fetchItems(ids: string[] | number[]) {
   return Promise.all(ids.map((id) => fetchItem(id))).then(
     (items) => items.filter((item) => item && !item.deleted) as HNItem[],
   );
+}
+
+export async function fetchTopStories() {
+  const topStoryIDs = await fetchTopStoryIDs();
+  return fetchItems(topStoryIDs);
+}
+
+async function fetchTopStoryIDs() {
+  return fetchJSON(
+    'https://hacker-news.firebaseio.com/v0/topstories.json',
+  ) as Promise<number[]>;
+}
+
+async function fetchJSON(url: string): Promise<unknown> {
+  const response = await fetch(url);
+  return response.json();
 }

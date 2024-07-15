@@ -1,0 +1,7 @@
+#stories-list {
+  padding-left: 1.5em;
+}
+
+#stories-list > li > a {
+  font-size: 1.2em;
+}
