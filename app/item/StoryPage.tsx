@@ -1,16 +1,16 @@
-import { fetchItems } from '../lib/API';
 import spacing from '../spacing';
 import { HNItem } from '../types/hacker-news';
 import Byline from './components/Byline';
-import Comment from './components/Comment';
 import HNText from './components/HNText';
+import PaginatedComments from './components/PaginatedComments';
+import { getItemURL } from '../lib/misc';
 
 type StoryPageProps = {
   item: HNItem;
+  pageOffset: number;
 };
 
-export default async function StoryPage({ item }: StoryPageProps) {
-  const comments = await fetchItems(item.kids ?? []);
+export default async function StoryPage({ item, pageOffset }: StoryPageProps) {
   const hasText = Boolean(item.text ?? '');
 
   return (
@@ -31,15 +31,11 @@ export default async function StoryPage({ item }: StoryPageProps) {
 
       <hr />
       <h3>Comments</h3>
-      <div>
-        {comments.map((comment, index) => (
-          <Comment
-            key={comment.id}
-            item={comment}
-            isLast={index === comments.length - 1}
-          />
-        ))}
-      </div>
+      <PaginatedComments
+        commentIDs={item.kids ?? []}
+        pageOffset={pageOffset}
+        baseURL={getItemURL(item.id)}
+      />
     </div>
   );
 }

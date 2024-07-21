@@ -15,11 +15,20 @@ export default async function ItemPage({ searchParams }: PageProps) {
     return <h1>Not Found</h1>;
   }
 
+  const pageParam = searchParams?.['p'] ?? '';
+  let pageNum = pageParam
+    ? Number(Array.isArray(pageParam) ? pageParam.join(',') : pageParam)
+    : 0;
+  if (Number.isNaN(pageNum)) {
+    pageNum = 0;
+  }
+  const pageOffset = Math.max(pageNum - 1, 0);
+
   switch (item.type) {
     case 'story':
-      return <StoryPage item={item} />;
+      return <StoryPage item={item} pageOffset={pageOffset} />;
     case 'comment':
-      return <CommentPage item={item} />;
+      return <CommentPage item={item} pageOffset={pageOffset} />;
     default:
       return <h1>Unsupported item type &apos;{item.type}&apos; 😢</h1>;
   }
