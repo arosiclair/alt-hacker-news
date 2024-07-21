@@ -1,27 +1,18 @@
+import { Metadata } from 'next';
 import { fetchItem } from '../lib/API';
-import { PageProps } from '../types/misc';
+import { PageProps, PageSearchParams } from '../types/misc';
 import CommentPage from './CommentPage';
 import StoryPage from './StoryPage';
 
 export default async function ItemPage({ searchParams }: PageProps) {
-  const idParam = searchParams?.['id'] ?? '';
-  if (!idParam) {
-    return <h1>Not Found</h1>;
-  }
-
-  const itemID = Array.isArray(idParam) ? idParam.join(',') : idParam;
+  const itemID = getItemID(searchParams);
   const item = await fetchItem(itemID);
+
   if (!item) {
     return <h1>Not Found</h1>;
   }
 
-  const pageParam = searchParams?.['p'] ?? '';
-  let pageNum = pageParam
-    ? Number(Array.isArray(pageParam) ? pageParam.join(',') : pageParam)
-    : 0;
-  if (Number.isNaN(pageNum)) {
-    pageNum = 0;
-  }
+  const pageNum = getPageNumber(searchParams);
   const pageOffset = Math.max(pageNum - 1, 0);
 
   switch (item.type) {
@@ -32,4 +23,38 @@ export default async function ItemPage({ searchParams }: PageProps) {
     default:
       return <h1>Unsupported item type &apos;{item.type}&apos; 😢</h1>;
   }
+}
+
+export async function generateMetadata({
+  searchParams,
+}: PageProps): Promise<Metadata> {
+  const itemID = getItemID(searchParams);
+  const item = await fetchItem(itemID);
+
+  if (!item) {
+    return {
+      title: 'Not Found | alt Hacker News',
+    };
+  }
+
+  return {
+    title: `${item.title} | alt Hacker News`,
+  };
+}
+
+function getItemID(searchParams?: PageSearchParams): string {
+  const idParam = searchParams?.['id'] ?? '';
+  if (!idParam) {
+    return '';
+  }
+
+  return Array.isArray(idParam) ? idParam.join(',') : idParam;
+}
+
+function getPageNumber(searchParams?: PageSearchParams): number {
+  let pageParam = searchParams?.['p'] ?? '';
+  pageParam = Array.isArray(pageParam) ? pageParam.join(',') : pageParam;
+
+  const pageNum = Number(pageParam);
+  return Number.isNaN(pageNum) ? 0 : pageNum;
 }
