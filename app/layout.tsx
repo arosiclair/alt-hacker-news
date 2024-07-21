@@ -38,9 +38,16 @@ export default function RootLayout({
 
 function Header() {
   return (
-    <div style={{ display: 'flex', marginBottom: spacing(3) }}>
+    <div style={{ marginBottom: spacing(3) }}>
       <Link href="/">
         <h2>
+          <img
+            src={'/icon.png'}
+            width={32}
+            height={32}
+            alt="logo"
+            style={{ verticalAlign: 'middle', marginRight: spacing(1) }}
+          />
           <em>alt</em> Hacker News
         </h2>
       </Link>
