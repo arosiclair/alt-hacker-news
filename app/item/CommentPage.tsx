@@ -11,7 +11,7 @@ type ItemPageProps = {
 };
 export default async function CommentPage({ item, pageOffset }: ItemPageProps) {
   const hasText = !!item.text;
-  const hasReplies = item.kids?.length ?? 0;
+  const hasReplies = Boolean(item.kids?.length ?? 0);
 
   return (
     <div>
