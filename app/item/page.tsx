@@ -3,6 +3,7 @@ import { fetchItem } from '../lib/API';
 import { PageProps, PageSearchParams } from '../types/misc';
 import CommentPage from './CommentPage';
 import StoryPage from './StoryPage';
+import { stripHTML } from '../lib/misc';
 
 export default async function ItemPage({ searchParams }: PageProps) {
   const itemID = getItemID(searchParams);
@@ -34,6 +35,18 @@ export async function generateMetadata({
   if (!item) {
     return {
       title: 'Not Found | alt Hacker News',
+    };
+  }
+
+  if (item.type === 'comment') {
+    if (!item.text) {
+      return { title: 'alt Hacker News' };
+    }
+
+    const text =
+      item.text.length > 100 ? item.text.substring(0, 100) + '...' : item.text;
+    return {
+      title: `${stripHTML(text, ' ')} | alt Hacker News`,
     };
   }
 
