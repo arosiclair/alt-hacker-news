@@ -50,11 +50,11 @@ export default function CommentReplies({
 
   return (
     <div
+      className="comment-container"
       style={{
         marginTop: spacing(1.5),
         marginLeft: spacing(1),
         paddingLeft: spacing(3),
-        borderLeft: '1px black solid',
         cursor: 'pointer',
       }}
       onClick={toggleCollapsed}
