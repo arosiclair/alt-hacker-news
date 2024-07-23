@@ -24,6 +24,6 @@ async function fetchTopStoryIDs() {
 }
 
 async function fetchJSON(url: string): Promise<unknown> {
-  const response = await fetch(url);
+  const response = await fetch(url, { next: { revalidate: 60 } });
   return response.json();
 }
