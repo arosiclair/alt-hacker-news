@@ -4,6 +4,7 @@ import { PageProps, PageSearchParams } from '../types/misc';
 import CommentPage from './CommentPage';
 import StoryPage from './StoryPage';
 import { stripHTML } from '../lib/misc';
+import { decode } from 'html-entities';
 
 export default async function ItemPage({ searchParams }: PageProps) {
   const itemID = getItemID(searchParams);
@@ -46,7 +47,7 @@ export async function generateMetadata({
     const text =
       item.text.length > 100 ? item.text.substring(0, 100) + '...' : item.text;
     return {
-      title: `${stripHTML(text, ' ')} | alt Hacker News`,
+      title: `${decode(stripHTML(text, ' '))} | alt Hacker News`,
     };
   }
 
