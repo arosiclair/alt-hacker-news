@@ -1,7 +1,10 @@
+'use client';
+// ^ needs to be client side in order to render dates in the user's timezone
+
 import { formatISO9075, formatRelative } from 'date-fns';
 
 type TimestampProps = {
-  /** A unix timestamp in the past */
+  /** A unix timestamp (seconds) in the past */
   children: number;
 };
 
