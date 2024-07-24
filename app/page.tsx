@@ -1,6 +1,8 @@
 import Byline from './item/components/Byline';
+import ItemLink from './item/components/ItemLink';
 import { fetchTopStories } from './lib/API';
 import { getHostname } from './lib/misc';
+import { HNItem } from './types/hacker-news';
 
 import './styles/home.css';
 
@@ -17,7 +19,7 @@ export default async function Home() {
 
           return (
             <li key={id} id={id}>
-              <a href={url}>{story.title ?? ''}</a>{' '}
+              <StoryLink story={story} />{' '}
               {hostname && <span className="muted">{hostname}</span>}
               <Byline item={story} score author timestamp comments />
             </li>
@@ -26,4 +28,20 @@ export default async function Home() {
       </ol>
     </div>
   );
+}
+
+type StoryLinkProps = {
+  story: HNItem;
+};
+
+function StoryLink({ story }: StoryLinkProps) {
+  const url = story.url ?? '';
+  const title = story.title ?? '';
+
+  if (url) {
+    return <a href={url}>{title}</a>;
+  }
+
+  // If there's no URL it's a self post so just link to the item
+  return <ItemLink id={story.id}>{title}</ItemLink>;
 }
