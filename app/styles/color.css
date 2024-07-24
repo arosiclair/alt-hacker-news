@@ -1,6 +1,8 @@
 :root {
   --light-text-color: rgba(0, 0, 0, 0.9);
+  --muted-light-text-color: rgba(0, 0, 0, 0.7);
   --dark-text-color: rgba(255, 255, 255, 0.9);
+  --muted-dark-text-color: rgba(255, 255, 255, 0.5);
 }
 
 html {
@@ -24,6 +26,11 @@ a:visited {
   border-left: 1px var(--light-text-color) solid;
 }
 
+.muted {
+  font-size: 0.9em;
+  color: var(--muted-light-text-color);
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     background-color: #212121;
@@ -44,5 +51,9 @@ a:visited {
 
   .comment-container {
     border-left-color: var(--dark-text-color);
+  }
+
+  .muted {
+    color: var(--muted-dark-text-color);
   }
 }
