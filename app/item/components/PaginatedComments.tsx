@@ -1,7 +1,7 @@
-import Link from 'next/link';
 import Comment from './Comment';
 import { fetchItems } from '@/app/lib/API';
 import spacing from '@/app/spacing';
+import BetterLink from '@/app/components/BetterLink';
 
 const PAGE_LIMIT = 50;
 
@@ -50,7 +50,7 @@ export default async function PaginatedComments({
 
       {hasMoreComments && (
         <h3 style={{ marginTop: spacing(2) }}>
-          🔗 <Link href={nextPageURL}>{nextPageText}</Link>
+          🔗 <BetterLink href={nextPageURL}>{nextPageText}</BetterLink>
         </h3>
       )}
     </>

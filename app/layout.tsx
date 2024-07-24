@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import spacing from './spacing';
-import Link from 'next/link';
 
 import './styles/reset.css';
 import './styles/color.css';
 import './styles/typography.css';
 import './styles/layout.css';
+import BetterLink from './components/BetterLink';
 
 const font = localFont({
   src: '../public/fonts/GeistVF.ttf',
@@ -39,7 +39,7 @@ export default function RootLayout({
 function Header() {
   return (
     <div style={{ marginBottom: spacing(3) }}>
-      <Link href="/">
+      <BetterLink href="/">
         <h2>
           <img
             src={'/icon.png'}
@@ -50,7 +50,7 @@ function Header() {
           />
           <em>alt</em> Hacker News
         </h2>
-      </Link>
+      </BetterLink>
     </div>
   );
 }

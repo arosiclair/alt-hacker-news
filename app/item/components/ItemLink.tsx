@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import BetterLink from '@/app/components/BetterLink';
 import { CSSProperties, PropsWithChildren, ReactElement } from 'react';
 
 type ItemLinkProps = {
@@ -14,8 +14,8 @@ export default function ItemLink({
   style,
 }: PropsWithChildren<ItemLinkProps>) {
   return (
-    <Link className={className} style={style} href={`/item?id=${id}`}>
+    <BetterLink className={className} style={style} href={`/item?id=${id}`}>
       {children}
-    </Link>
+    </BetterLink>
   );
 }
