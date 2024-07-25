@@ -1,4 +1,4 @@
-import { CSSProperties, ReactElement } from 'react';
+import { CSSProperties, Fragment, ReactElement } from 'react';
 import { HNItem } from '../../types/hacker-news';
 import Timestamp from './Timestamp';
 import spacing from '../../spacing';
@@ -76,10 +76,10 @@ export default function Byline({
       }}
     >
       {fragments.map((fragment, index) => (
-        <>
+        <Fragment key={index}>
           {fragment}
           {index !== fragments.length - 1 ? ' • ' : null}
-        </>
+        </Fragment>
       ))}
     </div>
   );
