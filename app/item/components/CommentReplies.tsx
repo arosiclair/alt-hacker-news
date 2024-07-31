@@ -50,7 +50,7 @@ export default function CommentReplies({
 
   return (
     <div
-      className="comment-container"
+      className="replies-container"
       style={{
         marginTop: spacing(1.5),
         marginLeft: spacing(1),
