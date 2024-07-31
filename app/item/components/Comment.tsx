@@ -17,7 +17,7 @@ export default function Comment({ item, isLast, indent = 0 }: CommentProps) {
     <div
       id={String(item.id)}
       className="comment"
-      style={{ marginBottom: spacing(!isLast ? 3 : 1), cursor: 'default' }}
+      style={{ paddingBottom: spacing(!isLast ? 3 : 1), cursor: 'default' }}
       onClick={(event) => event.stopPropagation()}
     >
       <Byline item={item} author timestamp />
