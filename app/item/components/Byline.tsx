@@ -71,7 +71,7 @@ export default function Byline({
   return (
     <div
       style={{
-        marginBottom: spacing(0.75),
+        marginBottom: spacing(0.25),
         ...style,
       }}
     >
