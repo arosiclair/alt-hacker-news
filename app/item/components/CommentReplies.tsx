@@ -40,7 +40,7 @@ export default function CommentReplies({
     return (
       <div
         className="collapsed-replies-container"
-        style={{ cursor: 'pointer' }}
+        style={{ cursor: 'pointer', marginTop: spacing(0.5) }}
         onClick={toggleCollapsed}
       >
         <CollapsedReplies numReplies={replyIDs.length} />
@@ -52,7 +52,7 @@ export default function CommentReplies({
     <div
       className="replies-container"
       style={{
-        marginTop: spacing(1.5),
+        marginTop: spacing(2),
         marginLeft: spacing(1),
         paddingLeft: spacing(3),
         cursor: 'pointer',
