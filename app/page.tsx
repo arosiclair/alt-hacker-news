@@ -15,7 +15,7 @@ export default async function Home() {
         {topStories.map((story) => {
           const id = String(story.id);
           const url = story.url ?? '';
-          const hostname = `(${getHostname(url)})`;
+          const hostname = `(${getHostname(url) ?? 'self'})`;
 
           return (
             <li key={id} id={id}>
