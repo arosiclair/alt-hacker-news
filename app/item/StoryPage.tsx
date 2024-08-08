@@ -21,7 +21,7 @@ export default async function StoryPage({ item, pageOffset }: StoryPageProps) {
         </a>
       </h1>
 
-      <Byline item={item} score author timestamp comments />
+      <Byline item={item} score author timestamp comments viewOnHN />
 
       {hasText && (
         <div style={{ marginBottom: spacing(2) }}>

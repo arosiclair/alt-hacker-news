@@ -1,10 +1,11 @@
 import BetterLink from '@/app/components/BetterLink';
-import { CSSProperties, PropsWithChildren, ReactElement } from 'react';
+import { CSSProperties, PropsWithChildren } from 'react';
 
 type ItemLinkProps = {
   id: number;
   className?: string;
   style?: CSSProperties;
+  toHN?: boolean;
 };
 
 export default function ItemLink({
@@ -12,9 +13,15 @@ export default function ItemLink({
   children,
   className,
   style,
+  toHN,
 }: PropsWithChildren<ItemLinkProps>) {
+  const baseURL = toHN ? 'https://news.ycombinator.com' : '';
   return (
-    <BetterLink className={className} style={style} href={`/item?id=${id}`}>
+    <BetterLink
+      className={className}
+      style={style}
+      href={`${baseURL}/item?id=${id}`}
+    >
       {children}
     </BetterLink>
   );

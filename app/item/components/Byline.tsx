@@ -12,6 +12,7 @@ type BylineProps = {
   timestamp?: boolean;
   comments?: boolean;
   replies?: boolean;
+  viewOnHN?: boolean;
 };
 
 export default function Byline({
@@ -22,6 +23,7 @@ export default function Byline({
   timestamp,
   comments,
   replies,
+  viewOnHN,
 }: BylineProps) {
   const isComment = item.type === 'comment';
   const numComments = item.descendants ?? 0;
@@ -64,6 +66,14 @@ export default function Byline({
     fragments.push(
       <ItemLink id={item.id}>
         {numReplies} {replyText}
+      </ItemLink>,
+    );
+  }
+
+  if (viewOnHN) {
+    fragments.push(
+      <ItemLink id={item.id} toHN>
+        view on HN
       </ItemLink>,
     );
   }

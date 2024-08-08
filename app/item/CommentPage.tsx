@@ -15,7 +15,7 @@ export default async function CommentPage({ item, pageOffset }: ItemPageProps) {
 
   return (
     <div>
-      <Byline item={item} author timestamp replies />
+      <Byline item={item} author timestamp replies viewOnHN />
 
       {hasText && (
         <div style={{ marginBottom: spacing(2) }}>
