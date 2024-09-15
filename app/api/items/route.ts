@@ -13,13 +13,13 @@ export async function POST(request: Request) {
 
   if (!Array.isArray(body.itemIDs)) {
     return Response.json(
-      { error: 'itemIDs should be a string array' },
+      { error: 'itemIDs should be a number array' },
       { status: 400 },
     );
   }
 
   // Normalize itemIDs to a string array
-  const itemIDs = body.itemIDs.filter(Boolean).map((itemID) => String(itemID));
+  const itemIDs = body.itemIDs.filter(Boolean).map((itemID) => Number(itemID));
   const items = await fetchItems(itemIDs);
   return Response.json(items);
 }
