@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { HNItem } from '../../types/hacker-news';
-import { fetchItems } from '../../lib/API';
 import Comment from './Comment';
 import spacing from '../../spacing';
 import ItemLink from './ItemLink';
+import { proxyItems } from '@/app/lib/proxy';
 
 type CommentRepliesProps = {
   itemID: number;
@@ -24,7 +24,7 @@ export default function CommentReplies({
 
   useEffect(() => {
     if (!isCollapsed && !replies.length) {
-      fetchItems(replyIDs).then(setReplies);
+      proxyItems(replyIDs).then(setReplies);
     }
   }, [isCollapsed, replies.length, replyIDs]);
 
