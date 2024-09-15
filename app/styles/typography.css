@@ -69,3 +69,10 @@ pre {
   border-radius: 0.5em;
   padding: 1em 0.5em;
 }
+
+/* Remove any font size changes made by Safari */
+:root {
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
