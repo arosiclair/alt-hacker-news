@@ -11,6 +11,8 @@ type TimestampProps = {
 export default function Timestamp({ children }: TimestampProps) {
   const date = new Date(children * 1000);
   return (
-    <span title={formatISO9075(date)}>{formatRelative(date, new Date())}</span>
+    <span title={formatISO9075(date)} suppressHydrationWarning>
+      {formatRelative(date, new Date())}
+    </span>
   );
 }
