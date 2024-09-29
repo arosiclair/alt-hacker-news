@@ -21,6 +21,11 @@ export default function CommentReplies({
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [replies, setReplies] = useState<HNItem[]>([]);
   const toggleCollapsed = () => setIsCollapsed(!isCollapsed);
+  const scrollToRoot = () => {
+    document
+      .getElementById(String(itemID))
+      ?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   useEffect(() => {
     if (!isCollapsed && !replies.length) {
@@ -52,7 +57,7 @@ export default function CommentReplies({
           paddingLeft: spacing(3),
           cursor: 'pointer',
         }}
-        onClick={toggleCollapsed}
+        onClick={scrollToRoot}
       >
         {replies.map((reply, index) => (
           <Comment
