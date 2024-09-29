@@ -36,50 +36,56 @@ export default function CommentReplies({
     return <RepliesLink numReplies={replyIDs.length} itemID={itemID} />;
   }
 
-  if (isCollapsed) {
-    return (
+  return (
+    <div>
+      <RepliesHeader
+        numReplies={replyIDs.length}
+        isCollapsed={isCollapsed}
+        onToggleCollapse={toggleCollapsed}
+      />
       <div
-        className="collapsed-replies-container"
-        style={{ cursor: 'pointer', marginTop: spacing(0.5) }}
+        className="replies-container"
+        style={{
+          display: isCollapsed ? 'none' : 'block',
+          marginTop: spacing(1),
+          marginLeft: spacing(1),
+          paddingLeft: spacing(3),
+          cursor: 'pointer',
+        }}
         onClick={toggleCollapsed}
       >
-        <CollapsedReplies numReplies={replyIDs.length} />
+        {replies.map((reply, index) => (
+          <Comment
+            key={reply.id}
+            item={reply}
+            isLast={index === replies.length - 1}
+            indent={indent}
+          />
+        ))}
       </div>
-    );
-  }
-
-  return (
-    <div
-      className="replies-container"
-      style={{
-        marginTop: spacing(2),
-        marginLeft: spacing(1),
-        paddingLeft: spacing(3),
-        cursor: 'pointer',
-      }}
-      onClick={toggleCollapsed}
-    >
-      {replies.map((reply, index) => (
-        <Comment
-          key={reply.id}
-          item={reply}
-          isLast={index === replies.length - 1}
-          indent={indent}
-        />
-      ))}
     </div>
   );
 }
 
-type CollapsedRepliesProps = {
+type RepliesHeaderProps = {
   numReplies: number;
+  isCollapsed: boolean;
+  onToggleCollapse: () => void;
 };
 
-function CollapsedReplies({ numReplies }: CollapsedRepliesProps) {
+function RepliesHeader({
+  numReplies,
+  isCollapsed,
+  onToggleCollapse,
+}: RepliesHeaderProps) {
+  const showHideEmoji = isCollapsed ? '➕' : '➖';
+  const showHideText = isCollapsed ? 'show' : 'hide';
   const replyText = numReplies === 1 ? 'reply' : 'replies';
   return (
     <div>
-      ➕ show {numReplies} {replyText}
+      <span onClick={onToggleCollapse} style={{ cursor: 'pointer' }}>
+        {showHideEmoji} {showHideText} {numReplies} {replyText}
+      </span>
     </div>
   );
 }
