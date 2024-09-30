@@ -24,6 +24,12 @@ a:visited {
 
 .replies-container {
   border-left: 1px var(--light-text-color) solid;
+  transition: border-color 500ms ease-in-out;
+}
+
+.replies-container.active {
+  border-color: rgb(197, 177, 0);
+  transition-duration: 0ms;
 }
 
 .muted {

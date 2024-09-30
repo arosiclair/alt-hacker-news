@@ -1,6 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import {
+  MouseEventHandler,
+  MutableRefObject,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { HNItem } from '../../types/hacker-news';
 import Comment from './Comment';
 import spacing from '../../spacing';
@@ -21,10 +27,20 @@ export default function CommentReplies({
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [replies, setReplies] = useState<HNItem[]>([]);
   const toggleCollapsed = () => setIsCollapsed(!isCollapsed);
-  const scrollToRoot = () => {
-    document
-      .getElementById(String(itemID))
-      ?.scrollIntoView({ behavior: 'smooth' });
+  const repliesContainerRef: MutableRefObject<HTMLDivElement | null> =
+    useRef(null);
+
+  const scrollToRoot: MouseEventHandler<HTMLDivElement> = (event) => {
+    const rootComment = document.getElementById(String(itemID));
+    rootComment?.scrollIntoView({ behavior: 'smooth' });
+
+    // Temporarily add the active class to make the gutter blink on press
+    repliesContainerRef.current?.classList.add('active');
+    setTimeout(() => {
+      repliesContainerRef.current?.classList.remove('active');
+    }, 750);
+
+    event.stopPropagation();
   };
 
   useEffect(() => {
@@ -58,6 +74,7 @@ export default function CommentReplies({
           cursor: 'pointer',
         }}
         onClick={scrollToRoot}
+        ref={repliesContainerRef}
       >
         {replies.map((reply, index) => (
           <Comment
