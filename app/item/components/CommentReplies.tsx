@@ -38,7 +38,7 @@ export default function CommentReplies({
     repliesContainerRef.current?.classList.add('active');
     setTimeout(() => {
       repliesContainerRef.current?.classList.remove('active');
-    }, 750);
+    }, 250);
 
     event.stopPropagation();
   };
